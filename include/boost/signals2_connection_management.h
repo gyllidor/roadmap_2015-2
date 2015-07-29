@@ -1,34 +1,28 @@
-#ifndef SIGNALS2_H
-#define SIGNALS2_H
+#ifndef SIGNALS2_CONNECTION_MANAGEMENT_H
+#define SIGNALS2_CONNECTION_MANAGEMENT_H
 
-namespace rdmp //! @brief rdmp -> RoadMap
+namespace rdmp
 {
+//! ************************************************************************************************
+//! @brief disconnect slot
+//! ************************************************************************************************
+void SimpleDisconnectSlot();
 
 //! ************************************************************************************************
-//! @brief simple signals - hello world and woohoo. signal<void()>
+//! @brief temporary block some slot
 //! ************************************************************************************************
-void SignalsHelloWorld();
+void SimpleBlockSlot();
 
 //! ************************************************************************************************
-//! @brief signals with arguments. <void(float,float)>
+//! @brief simple example of scoped connection
 //! ************************************************************************************************
-void SignalsWithArgs();
+void SimpleScopedConnection();
 
 //! ************************************************************************************************
-//! @brief signals with returning the result. <float(float,float)>
+//! @brief disconnect equivalent slots
 //! ************************************************************************************************
-void SimpleReturnedValue();
-
-//! ************************************************************************************************
-//! @brief return maximum value with help of Combiner
-//! ************************************************************************************************
-void RetMaxValue();
-
-//! ************************************************************************************************
-//! @brief aggregate all values into std::vector
-//! ************************************************************************************************
-void RetVectorValues();
+void SimpleDisconnectEquivalentSlots();
 
 } // namespace rdmp
 
-#endif // SIGNALS2_H
+#endif // SIGNALS2_CONNECTION_MANAGEMENT_H
