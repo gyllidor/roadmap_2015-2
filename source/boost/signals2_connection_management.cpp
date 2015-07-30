@@ -37,6 +37,42 @@ void DisconnectEquivalentSecond()
 }
 
 //! ************************************************************************************************
+//! @brief news items
+//! ************************************************************************************************
+struct NewsItem
+{
+    NewsItem(const std::string& news)
+        : m_news(news)
+    {}
+
+    const std::string& GetNews() const
+    {
+        return m_news;
+    }
+
+private: // members
+    std::string m_news;
+
+}; // struct NewsItem
+
+//! ************************************************************************************************
+//! @brief news consumer
+//! ************************************************************************************************
+struct NewsConsumer
+{
+    void ReadNews(const NewsItem& newsItem) const
+    {
+        BRR_LOGI("NewsConsumer %d read - %s", m_count++, newsItem.GetNews().c_str());
+    }
+
+private: // members
+    static int m_count;
+
+}; // struct NewConsumer
+
+int NewsConsumer::m_count = 0;
+
+//! ************************************************************************************************
 //!
 //! ************************************************************************************************
 void rdmp::SimpleDisconnectSlot()
@@ -107,4 +143,42 @@ void rdmp::SimpleDisconnectEquivalentSlots()
 
     BRR_LOGI("someone disconnected, guess who?");
     sig();
+}
+
+//! ************************************************************************************************
+//!
+//! ************************************************************************************************
+void rdmp::TrackObjectLive()
+{
+    typedef boost::signals2::signal <void(const NewsItem&)> NewsMaker;
+    typedef boost::function <void(const NewsItem&)> FunctionConsumer;
+
+    NewsConsumer* pNewsConsumerFirst  = new NewsConsumer;
+    NewsConsumer* pNewsConsumerSecond = new NewsConsumer;
+
+    NewsMaker newsMaker;
+    FunctionConsumer firstConsumer  = boost::bind(&NewsConsumer::ReadNews, pNewsConsumerFirst,  _1);
+    FunctionConsumer secondConsumer = boost::bind(&NewsConsumer::ReadNews, pNewsConsumerSecond, _1);
+    newsMaker.connect(firstConsumer);
+    newsMaker.connect(secondConsumer);
+
+    newsMaker(NewsItem("Just do it"));
+    delete pNewsConsumerFirst;
+    delete pNewsConsumerSecond;
+
+    NewsMaker coolNewsMaker;
+    {
+        boost::shared_ptr <NewsConsumer> pFirstConsumer(new NewsConsumer);
+        boost::shared_ptr <NewsConsumer> pSecondConsumer(new NewsConsumer);
+        coolNewsMaker.connect(NewsMaker::slot_type(&NewsConsumer::ReadNews,
+                                                   pFirstConsumer.get(),
+                                                   _1).track(pFirstConsumer));
+
+        coolNewsMaker.connect(NewsMaker::slot_type(&NewsConsumer::ReadNews,
+                                                   pSecondConsumer.get(),
+                                                   _1).track(pSecondConsumer));
+        coolNewsMaker(NewsItem("this real coool news :)"));
+    }
+
+    coolNewsMaker(NewsItem("object destroyed"));
 }

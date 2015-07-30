@@ -23,6 +23,11 @@ void SimpleScopedConnection();
 //! ************************************************************************************************
 void SimpleDisconnectEquivalentSlots();
 
+//! ************************************************************************************************
+//! @brief track object live via track(shared_ptr)
+//! ************************************************************************************************
+void TrackObjectLive();
+
 } // namespace rdmp
 
 #endif // SIGNALS2_CONNECTION_MANAGEMENT_H

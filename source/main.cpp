@@ -16,6 +16,7 @@ int main()
     rdmp::SimpleBlockSlot();
     rdmp::SimpleScopedConnection();
     rdmp::SimpleDisconnectEquivalentSlots();
+    rdmp::TrackObjectLive();
 
     return 0;
 }
