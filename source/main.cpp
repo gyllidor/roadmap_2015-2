@@ -1,5 +1,6 @@
 #include "signals2.h"
 #include "signals2_connection_management.h"
+#include "signals2_document.h"
 #include "BrrLogger.h"
 
 int main()
@@ -17,6 +18,10 @@ int main()
     rdmp::SimpleScopedConnection();
     rdmp::SimpleDisconnectEquivalentSlots();
     rdmp::TrackObjectLive();
+    rdmp::SimpleButton();
+
+    BRR_LOGI("################# 3 step");
+    rdmp::SimpleExampleOfDocumentView();
 
     return 0;
 }

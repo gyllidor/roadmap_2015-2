@@ -28,6 +28,11 @@ void SimpleDisconnectEquivalentSlots();
 //! ************************************************************************************************
 void TrackObjectLive();
 
+//! ************************************************************************************************
+//! @brief simple example of a button - subrscribe on button press event (simulation)
+//! ************************************************************************************************
+void SimpleButton();
+
 } // namespace rdmp
 
 #endif // SIGNALS2_CONNECTION_MANAGEMENT_H

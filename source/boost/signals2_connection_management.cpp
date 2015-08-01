@@ -7,6 +7,10 @@
 //! ************************************************************************************************
 //! @brief function helpers
 //! ************************************************************************************************
+namespace
+{
+
+//! ************************************************************************************************
 void PrintHappiness()
 {
     BRR_LOGI("looks like i am happy O_o");
@@ -71,6 +75,52 @@ private: // members
 }; // struct NewConsumer
 
 int NewsConsumer::m_count = 0;
+
+//! ************************************************************************************************
+//! @brief class Button
+//! ************************************************************************************************
+class Button
+{
+private: // types
+    typedef boost::signals2::signal <void(int, int)> Subscribers;
+
+public: // types
+    typedef Subscribers::slot_type Subscriber;
+
+public: // methods
+    void Subscribe(const Button::Subscriber& c_subscriber)
+    {
+        m_subscribers.connect(c_subscriber);
+    }
+
+    void SimulatePress() const
+    {
+        m_subscribers(12, 21);
+    }
+
+private: // members
+    Subscribers m_subscribers;
+
+}; // class Button
+
+//! ************************************************************************************************
+void ButtonSubscriber(int x, int y)
+{
+    BRR_LOGI("WooHoo button pressed %d %d", x, y);
+}
+
+//! ************************************************************************************************
+void SadButtonSubscriber(int x, int y)
+{
+    BRR_LOGI("Truly sad coordinates %d %d", x, y);
+}
+
+//! ************************************************************************************************
+} // unnamed namespace
+
+//! ************************************************************************************************
+//! ************************************************************************************************
+//! ************************************************************************************************
 
 //! ************************************************************************************************
 //!
@@ -177,8 +227,19 @@ void rdmp::TrackObjectLive()
         coolNewsMaker.connect(NewsMaker::slot_type(&NewsConsumer::ReadNews,
                                                    pSecondConsumer.get(),
                                                    _1).track(pSecondConsumer));
-        coolNewsMaker(NewsItem("this real coool news :)"));
+        coolNewsMaker(NewsItem("this realy coool news :)"));
     }
 
     coolNewsMaker(NewsItem("object destroyed"));
+}
+
+//! ************************************************************************************************
+//!
+//! ************************************************************************************************
+void rdmp::SimpleButton()
+{
+    Button button;
+    button.Subscribe(&ButtonSubscriber);
+    button.Subscribe(&SadButtonSubscriber);
+    button.SimulatePress();
 }

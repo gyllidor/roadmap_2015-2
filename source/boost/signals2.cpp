@@ -104,7 +104,8 @@ float RetQuotient(float arg1, float arg2)
     return arg1 / arg2;
 }
 
-} //! @brief unnamed namespace
+//! ************************************************************************************************
+} // unnamed namespace
 
 //! ************************************************************************************************
 //! @brief Combiner returns the maximum value that all slots returned
