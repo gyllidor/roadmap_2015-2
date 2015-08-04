@@ -1,6 +1,7 @@
 #include "signals2.h"
 #include "signals2_connection_management.h"
 #include "signals2_document.h"
+#include "rdmp_bind.h"
 #include "BrrLogger.h"
 
 int main()

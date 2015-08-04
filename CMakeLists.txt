@@ -12,6 +12,8 @@ message("CMAKE_CXX_FLAGS are ${CMAKE_CXX_FLAGS}")
 INCLUDE_DIRECTORIES(
 ${CMAKE_SOURCE_DIR}/include
 ${CMAKE_SOURCE_DIR}/include/boost
+${CMAKE_SOURCE_DIR}/include/boost/signals
+${CMAKE_SOURCE_DIR}/include/boost/bind
 )
 #
 if (${CMAKE_BUILD_TYPE} STREQUAL "debug")
