@@ -119,7 +119,8 @@ public: // methods
 //! ************************************************************************************************
 void rdmp::SimpleExampleOfDocumentView()
 {
-    Document doc;
+    BRR_LOGI("you should uncoment function body");
+    /*Document doc;
     ViewHex  vhex(doc);
     ViewText vtext(doc);
 
@@ -130,5 +131,5 @@ void rdmp::SimpleExampleOfDocumentView()
 
     std::cout << "Type some text: ";
     std::cin >> text;
-    doc.Append(" " + text);
+    doc.Append(" " + text);*/
 }

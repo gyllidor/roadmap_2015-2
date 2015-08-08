@@ -24,6 +24,13 @@ int main()
     BRR_LOGI("################# 3 step");
     rdmp::SimpleExampleOfDocumentView();
 
+    BRR_LOGI("################# 4 step");
+    rdmp::BindEmpty();
+    rdmp::BindWithTwoArgs();
+    rdmp::BindObjectMethodWithArgs();
+    rdmp::BindObjectOverloadedMethod();
+    rdmp::BindReferenceAsArgs();
+
     return 0;
 }
 
