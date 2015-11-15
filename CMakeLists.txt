@@ -14,6 +14,7 @@ ${CMAKE_SOURCE_DIR}/include
 ${CMAKE_SOURCE_DIR}/include/boost
 ${CMAKE_SOURCE_DIR}/include/boost/signals
 ${CMAKE_SOURCE_DIR}/include/boost/bind
+${CMAKE_SOURCE_DIR}/include/boost/lexical_cast
 )
 #
 if (${CMAKE_BUILD_TYPE} STREQUAL "debug")

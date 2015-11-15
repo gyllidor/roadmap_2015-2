@@ -1,6 +1,8 @@
 #include "signals2_document.h"
 #include "BrrLogger.h"
 
+#include <iostream>
+
 #include <boost/signals2.hpp>
 
 //! ************************************************************************************************

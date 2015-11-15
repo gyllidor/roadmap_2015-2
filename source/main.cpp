@@ -1,3 +1,5 @@
+#include "lexical_cast_stringize.h"
+#include "lexical_cast_examples.h"
 #include "signals2.h"
 #include "signals2_connection_management.h"
 #include "signals2_document.h"
@@ -30,6 +32,18 @@ int main()
     rdmp::BindObjectMethodWithArgs();
     rdmp::BindObjectOverloadedMethod();
     rdmp::BindReferenceAsArgs();
+
+    BRR_LOGI("################# 5 step");
+    rdmp::TryCastTypeToShort('5');
+    rdmp::TryCastTypeToShort("5a");
+    rdmp::TryCastTypeToShort(std::string("5"));
+    rdmp::CastWithoutMemoryAlloc(6);
+    rdmp::CastWithoutMemoryAlloc('6');
+    rdmp::CastWithoutMemoryAlloc("6");
+    rdmp::CastWithoutMemoryAlloc(std::string("6a"));
+    rdmp::CastFirst3SymbolsOfString("32104");
+    rdmp::RunStrigizeExample();
+
 
     return 0;
 }
